@@ -6,17 +6,100 @@ effort to allow IT organisations to utilize the data gathered from an
 implementation of the RPZ features included in BIND 9.8.1 to enhance 
 their organisation's security.
 
-=head1 PURPOSE
+=head2 Licence
 
-We do stuff.
+See the LICENCE.txt file.  GPLv2.
 
-=head1 STATUS
+=head2 Status
 
-We're working on it.
+This project is under core development (pre-Alpha).
 
-=head1 ARCHITECTURE
+The first alpha release is expectecd by mid-summer (northern hemisphere) 2012.
 
-You need resolvers, an RDBMS, and two web sites.
+=head2 Technology Background
+
+L<Paul Vixie|http://www.isc.org> implemented the first reputational
+data method of spam filtering.  This has become one of the most 
+effective and dominantly used methods of spam protection.
+
+With the release of BIND 9.8 a new reputational mechanism is available,
+this time for use in DNS resolvers.  An organisation is able to 
+receive a reputational data feed describing internet domains that
+have a reputation of attacking clients that visit the domain.
+
+The Internet Systems Consortium have provided an efficient standardised
+mechanism for the use of reputational data by recursive DNS resolvers
+and have left the provision of the data itself to professional 
+organisations that specialise in this information.  Additionally, the
+response that shall be given to a local client attempting to 
+resolve a domain which is listed amongst those with a 'poor' reputation
+is left to the local organisation to decide.
+
+The response delivered will commonly be one of two alternatives.  The
+first is an NXDOMAIN (no such domain) which is a simple black hole.
+The second is to always respond with a CNAME which will redirect the
+client to a staged location designed to both collect information about
+who has visited and also to inform them of the danger to which they
+have been averted by visiting the site.
+
+This second (CNAME) based response is known in the RPZ literature as
+a 'Walled Garden'.  The RPZLA project focusses on this approach and
+integrating data gathered by both the DNS resolver and visits to the
+Walled Garden to allow distinguishment between human behaviour (more
+precisely web browser behaviour) and malware behaviour.
+
+=head2 Purpose
+
+If a recursive DNS resolver is using RPZ and records in its logs 
+responses made based on RPZ data (i.e something asked for the 
+DNS resolution of a domain with a known poor reputation) then that
+data is available to be later analysed.  The tells us which systems
+using the resolver are attempting to visit domains with a poor 
+repuation.
+
+Additionally, if the organisation chooses to use a constant CNAME
+(Walled Garden) strategy and visits to the walled garden are also
+logged we can then correlate between the DNS logs and the Walled
+Garden logs allowing us to differentiate between the 'human' type
+behaviour of visiting a dangerous web site (DNS record is made and
+visit to the Walled Garden is made) and the likely behavious of
+locally installed malware (DNS record made, but no record at the 
+Walled Garden).
+
+The RPZLA project attempts to make all of this DNS and Walled
+Garden data easily available and to allow for easy distinction
+between the two described cases.
+
+Additionally, the project wishes to allow for entirely open access
+to all data so that additional tools can be constructed to utilise
+the available data according to the wishes of the organisation.
+
+=head1 DETAILS
+
+=head2 Architecture
+
+The key elements to RPZLA are a collection of resolvers which are
+implementing RPZs, a Walled Garden web-site, an RDBMS and a site
+which allows the organisation to view the data gathered from the 
+resolvers and the Walled Garden (which has been sent to the RDBMS).
+
+See [Open Document Graphics] L<http://github.com/rpzla/doc/Pictorial Overview.odg>
+
+=head2 Implementation
+
+To allow analysis of the data from the DNS resolvers and the
+Walled Garden, their log data must be delivered in a known format
+and then 'watched' with the 'watchers' then collecting the 
+relevant data to be shipped off to a central location (the RDBMS)
+for storage.
+
+Then, the analysis site can present any view of that data as 
+wished for by the organisation.
+
+Thus, the implementation is:
+
+* a collection of data gatherers running on the DNS resolvers and Walled Garden which ship data to the RDBMS
+* the analysis web site which queries that RDBMS and displays data as wished for by the organisation.
 
 =head1 COMMUNITY
 
