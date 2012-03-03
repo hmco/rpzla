@@ -1,0 +1,92 @@
+
+Overview
+-----------
+
+You need:
+
+* one or more BIND resolvers using RPZ
+* an apache web site to serve as your Walled Garden
+* a system on which to run the analysis web site (can be the same
+  as the Walled Garden)
+* a database into which to store the log data
+
+You will then:
+
+* install the log scrapers on your resolver(s)
+* install the log scraper on you Walled Garden
+* install the analysis site
+
+Creating the Database
+---------------------
+
+RPZLA currently only supports PostgreSQL (but adding support for
+other databases should be easy, contact the community).
+
+someone$ su - postgres
+postgre$ psql postgres
+Password: *******
+postgres=# postgres=# create user rpzla with password 'changme';
+CREATE ROLE
+postgres=# create database rpzla;
+CREATE DATABASE
+postgres=# grant all privileges on database rpzla to rpzla;
+GRANT
+postgres=# \q
+
+Set the credentials in the config file and install it
+-----------------------------------------------------
+
+$ cd etc
+$ vi rpzla-db.conf
+$ sudo make install
+
+Create the tables and views
+---------------------------
+
+$ cd db/postgres
+$ ./create_structures.sh  # edit first to change user/db if not rpzla
+Password: *****
+.
+.
+.
+
+Uploading Sample Data
+---------------------
+
+If you want to view the site with sample data before configuring
+your resolvers and walled garden:
+
+$ cd db/postrgres
+$ ./upload-sample-data.sh # edit first to change user/db if not rpzla
+
+Creating the Analysis Site
+--------------------------
+
+Using Apache2 and CGI in a Virtual Host:
+
+On the web server:
+
+$ cd web/analyse
+$ vi Makefile   # set the CGI_DIR to be the document root for the site
+$ sudo make install
+
+Edit the Apache config to define the virtual host:
+
+<VirtualHost *:80>
+        ServerName rpzla.your.domain
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html/rpzla 
+        AddHandler cgi-script .cgi
+        Options +ExecCGI
+        ScriptAlias / /var/www/html/rpzla/rpzla.cgi/
+	IndexIgnore *
+        ErrorLog logs/rpzla-error_log
+        CustomLog logs/rpzla-access_log common
+</VirtualHost>
+
+Setting up log scraping on BIND
+-------------------------------
+
+For each resolver:
+
+$ make loggger

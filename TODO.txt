@@ -1,0 +1,47 @@
+
+Bind service definition
+-----------------------
+
+Need an /etc/init.d/ style service start definition.
+
+Must also be able to intelligently start the log analyser.
+
+Install and How To Docs
+-----------------------
+
+Need and installer for rpz-log-analysis.
+
+Need a how to for configuring the Bind and Apache logs
+on which it dependes.
+
+Reporting
+---------
+
+Need to have a defined set of standard queries (view
+definitions) for:
+
+- who is a dumb user (lots of Web logs corresponding to 
+  DNS logs)
+- who is infected (lots of DNS logs, with little correspoding
+  Web logs)
+- Who is both infected and dumb (lots of both logs, but
+  little correlation between many DNS logs and a Web log)
+
+Reporting:  Ideas
+``````````````````
+
+Within a period of time select ip_address, count(*) (group by)
+so you have the number of times for the IP address (for each
+table).
+
+Then you need the ones that match (dumb user) and the ones
+that dont (the difference) ie. infected, correlated in time.
+
+(more to it ...)
+
+
+Putting it all together
+-----------------------
+
+A web-site that shows the analysis.  Download reports in
+standardised form.
