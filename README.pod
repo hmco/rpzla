@@ -24,7 +24,7 @@ A community starts from one person.
 
 =head1 REFERENCES
 
-* L<Taking Back the DNS|http://www.isc.org/files/TakingBackTheDNSrpz2.pdf>
+* L<Taking Back the DNS | http://www.isc.org/files/TakingBackTheDNSrpz2.pdf>
 
 =cut
 
