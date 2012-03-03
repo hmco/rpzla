@@ -18,7 +18,7 @@ The first alpha release is expectecd by mid-summer (northern hemisphere) 2012.
 
 =head2 Technology Background
 
-L<Paul Vixie|http://www.isc.org> implemented the first reputational
+L<Paul Vixie|"http://www.isc.org"> implemented the first reputational
 data method of spam filtering.  This has become one of the most 
 effective and dominantly used methods of spam protection.
 
@@ -83,7 +83,7 @@ implementing RPZs, a Walled Garden web-site, an RDBMS and a site
 which allows the organisation to view the data gathered from the 
 resolvers and the Walled Garden (which has been sent to the RDBMS).
 
-See [Open Document Graphics] L<http://github.com/rpzla/doc/Pictorial Overview.odg>
+See [Open Document Graphics] L<"http://github.com/rpzla/doc/Pictorial Overview.odg">
 
 =head2 Implementation
 
@@ -107,7 +107,7 @@ A community starts from one person.
 
 =head1 REFERENCES
 
-* L<http://www.isc.org/files/TakingBackTheDNSrpz2.pdf>
+* L<Taking Back the DNS | "http://www.isc.org/files/TakingBackTheDNSrpz2.pdf" >
 
 =cut
 
