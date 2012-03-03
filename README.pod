@@ -1,0 +1,31 @@
+
+=head1 PROJECT
+
+RPZLA translates as Response Policy Zone (RPZ) Log Analysis.  It is a first
+effort to allow IT organisations to utilize the data gathered from an 
+implementation of the RPZ features included in BIND 9.8.1 to enhance 
+their organisation's security.
+
+=head1 PURPOSE
+
+We do stuff.
+
+=head1 STATUS
+
+We're working on it.
+
+=head1 ARCHITECTURE
+
+You need resolvers, an RDBMS, and two web sites.
+
+=head1 COMMUNITY
+
+A community starts from one person.
+
+=head1 REFERENCES
+
+* L<Taking Back the DNS|http://www.isc.org/files/TakingBackTheDNSrpz2.pdf>
+
+=cut
+
+
