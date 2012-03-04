@@ -113,7 +113,7 @@ implementing RPZs, a Walled Garden web-site, an RDBMS and a web site
 organisation to view the data delivered to the RDBMS from the 
 resolvers and the Walled Garden.
 
-See [Open Document Graphics] L<http://github.com/rpzla/doc/Pictorial-Overview.odg>
+See [Open Document Graphics] L<https://github.com/yesxorno/rpzla/raw/master/doc/Pictorial-Overview.odg>
 
 =head2 Implementation
 
