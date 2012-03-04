@@ -137,9 +137,13 @@ A community starts from one person.
 
 =head1 REFERENCES
 
+=over 8
+
 =item *
 
 L<http://www.isc.org/files/TakingBackTheDNSrpz2.pdf>
+
+=back
 
 =cut
 
