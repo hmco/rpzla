@@ -128,8 +128,17 @@ wished for by the organisation.
 
 Thus, the implementation is:
 
-* a collection of data gatherers running on the DNS resolvers and Walled Garden which ship data to the RDBMS
-* the analysis web site which queries that RDBMS and displays data as wished for by the organisation.
+=over 8
+
+=item *
+
+a collection of data gatherers running on the DNS resolvers and Walled Garden which ship data to the RDBMS
+
+=item *
+
+the analysis web site which queries that RDBMS and displays data as wished for by the organisation.
+
+=back
 
 =head1 COMMUNITY
 
